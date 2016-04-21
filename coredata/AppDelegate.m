@@ -1,13 +1,13 @@
 //
 //  AppDelegate.m
-//  CoreDataDemo
+//  coredata
 //
-//  Created by mac on 16/4/19.
+//  Created by mac on 16/4/20.
 //  Copyright © 2016年 liuyl. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -16,12 +16,6 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    ViewController *vc=[[ViewController alloc]init ];
-    UINavigationController *na=[[UINavigationController alloc]initWithRootViewController:vc ];
-    
-    self.window.rootViewController=na;
-    
     // Override point for customization after application launch.
     return YES;
 }
@@ -47,7 +41,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
-    //app 中断时候保存
     [self saveContext];
 }
 
@@ -58,32 +51,22 @@
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
 - (NSURL *)applicationDocumentsDirectory {
-    // The directory the application uses to store the Core Data store file. This code uses a directory named "newgen.CoreDataDemo" in the application's documents directory.
-    /*
-     获取数据的存放路径
-     
-     ,存在沙盒的document中
-     */
+    // The directory the application uses to store the Core Data store file. This code uses a directory named "newgen.coredata" in the application's documents directory.
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-//数据模型的建立
 - (NSManagedObjectModel *)managedObjectModel {
     // The managed object model for the application. It is a fatal error for the application not to be able to find and load its model.
-    //懒加载
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-    //获得模型的URL
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"CoreDataDemo" withExtension:@"momd"];
-    //通过URL获得managedObjectModel
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"coredata" withExtension:@"momd"];
     _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return _managedObjectModel;
 }
-//持久化存储的设置
+
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     // The persistent store coordinator for the application. This implementation creates and returns a coordinator, having added the store for the application to it.
-    //持久化存储控制器
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
@@ -91,10 +74,7 @@
     // Create the coordinator and store
     
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    //获取存储的位置
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"CoreDataDemo.sqlite"];
-    //设置存储方式,存储位置.得到定义好的 持久化存储位置
-
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"coredata.sqlite"];
     NSError *error = nil;
     NSString *failureReason = @"There was an error creating or loading the application's saved data.";
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
@@ -109,6 +89,7 @@
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+    
     return _persistentStoreCoordinator;
 }
 

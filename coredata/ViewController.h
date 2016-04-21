@@ -1,8 +1,8 @@
 //
 //  ViewController.h
-//  CoreDataDemo
+//  coredata
 //
-//  Created by mac on 16/4/19.
+//  Created by mac on 16/4/20.
 //  Copyright © 2016年 liuyl. All rights reserved.
 //
 
@@ -10,6 +10,6 @@
 
 @interface ViewController : UIViewController
 
-@property(nonatomic, strong)UITableView *tableView;
+
 @end
 

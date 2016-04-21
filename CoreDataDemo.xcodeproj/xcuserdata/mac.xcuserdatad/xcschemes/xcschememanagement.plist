@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>coredata.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,21 @@
 			<true/>
 		</dict>
 		<key>0429B3791CC6274B00A110C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0429B3D71CC7252C00A110C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0429B3F21CC7252C00A110C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0429B3FD1CC7252C00A110C9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
